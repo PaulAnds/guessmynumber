@@ -1,0 +1,79 @@
+.Game {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 16px;
+}
+
+.Game input {
+    background-color: #52a05d;
+    border-radius: 8px;
+    color: #eee67d;
+    text-align: center;
+    width: 80px;
+    height: 80px;
+    font-size: 65px;
+}
+
+.texto {
+  font-size: 25px;
+  color: white;
+  text-shadow: 1px 1px 2px black, 0 0 25px orange, 0 0 5px darkgoldenrod;
+}
+
+.Game button {
+    background-color: #5D6D7E;
+    border: none;
+    color: white;
+    padding: 16px 32px; 
+    padding: 16px 24px; 
+    font-size: 20px;
+    font-weight: bold;
+    margin: 16px;
+    cursor: pointer;
+    border-radius: 8px;
+    width: 120px; 
+    width: 140px; 
+    
+}
+
+.Game h2 {
+    font-size: 30px;
+    font-weight: bold;
+    margin: 0;
+    color: rgb(162, 236, 113);
+    text-shadow: 1px 1px 2px black, 0 0 25px greenyellow, 0 0 5px rgb(169, 238, 123);
+}
+
+/* Animación de parpadeo */
+.flickering {
+    animation-name: flicker;
+    animation-duration: .3s;
+    animation-timing-function: linear;
+    animation-iteration-count: 0s;
+  
+    -webkit-animation-name:flicker;
+    -webkit-animation-duration: .3s;
+    -webkit-animation-timing-function: linear;
+    -webkit-animation-iteration-count: 3;
+  }
+  
+  /* La propiedad CSS -moz- utiliza en Gecko (Firefox)  */
+  @-moz-keyframes flicker{  
+    0% { opacity: 1.0; }
+    50% { opacity: 0.0; }
+    100% { opacity: 1.0; }
+  }
+  
+  /* sólo está disponible en navegadores basados en  WebKit como safari */
+  @-webkit-keyframes flicker {  
+    0% { opacity: 1.0; }
+    50% { opacity: 0.0; }
+     100% { opacity: 1.0; }
+  }
+  
+  @keyframes flicker {  
+    0% { opacity: 1.0; }
+     50% { opacity: 0.0; }
+    100% { opacity: 1.0; }
+}
