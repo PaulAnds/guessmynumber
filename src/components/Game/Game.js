@@ -1,13 +1,21 @@
 import React, { Component } from 'react';
+import {v4 as uuidv4} from 'uuid';
 import './Game.css';
+import List from './List';
 
+var counter = 0;
 class Game extends Component {
     constructor() {
         super()
         this.state = {
             number: "",
-            message: "",
-            random: generateRandomNumber(100)
+            message: "Try it out!",
+            random: generateRandomNumber(100),
+            task: '',
+            items: [
+                
+                
+            ],
         }
 
         
@@ -26,7 +34,8 @@ class Game extends Component {
 
         if(value.trim() > 0) {
             this.setState({
-                number: value
+                number: value,
+                task: value
             });
         }
        
@@ -57,20 +66,57 @@ class Game extends Component {
                 message: text,
             });
         }
+        if (this.state.task.trim() !== '') {
+            this.setState({
+                task: '',
+                items: [
+                    ...this.state.items,
+                    {
+                        id: uuidv4(),
+                        task: this.state.task,
+                        complete: false
+                    }
+                ]
+            })
+        }
+    }
+    removeTask = id => {
+        const {items} = this.state;
         
+        const filteredItems = items.filter(
+            item => item.id !== id
+        );
+        
+        console.log(filteredItems);
+
+        this.setState({
+            items: filteredItems,
+
+
+        })
+
     }
     render() {
         
         return (
             <div className="Game">
                 <p class="texto">Guess the number from 1 - 100</p>
+                <br></br>
                 <input
+                    className = "input"
                     type="number"
                     value = {this.state.number}
                     onChange = {this.handleOnChange}
                 />
                 <button onClick={this.handleOnClick}>Check</button>
                 <h2 className={(this.state.message)&& 'flickering'}>{this.state.message}</h2>
+                <h2>Past tries:</h2>
+                <List 
+                    items ={this.state.items}
+                    markAsCompleted = {this.markAsCompleted}
+                    removeTask = {this.removeTask}
+                />
+
             </div>
         );
     }
@@ -85,9 +131,10 @@ function generateRandomNumber(max, min=1) {
 function calculateText(number, random) {
     const soClose = 5;
     const diff = Math.abs(random - number);
+    counter++;
     
     if (number === random) {
-        return "Congratulations you got it right!!";
+        return "Congratulations you got it right!! Tries: " + counter;
     }
     
     if (diff < soClose) {

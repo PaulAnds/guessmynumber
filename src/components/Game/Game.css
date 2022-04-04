@@ -5,7 +5,7 @@
     margin: 16px;
 }
 
-.Game input {
+.input {
     background-color: #52a05d;
     border-radius: 8px;
     color: #eee67d;
@@ -13,6 +13,12 @@
     width: 80px;
     height: 80px;
     font-size: 65px;
+}
+
+.list{
+  font-size: 25px;
+  color: white;
+  text-shadow: 1px 1px 2px black, 0 0 30px rgb(79, 230, 41), 0 0 5px rgb(55, 223, 33);
 }
 
 .texto {
